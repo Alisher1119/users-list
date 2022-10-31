@@ -1,0 +1,27 @@
+<div class="p-3">
+  <table class="table table-striped border">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of service.items | async; index as i">
+      <th scope="row">{{ (service.currentPage - 1) * service.perPage + i + 1 }}</th>
+      <td scope="row">{{ user.name }}</td>
+      <td scope="row">{{ user.email }}</td>
+      <td scope="row">{{ user.phone }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <ngb-pagination
+    [page]="service.currentPage"
+    (pageChange)="getAll($event)"
+    [pageSize]="service.perPage"
+    [collectionSize]="service.totalCount">
+  </ngb-pagination>
+</div>
+
